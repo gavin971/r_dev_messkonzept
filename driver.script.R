@@ -2,9 +2,17 @@
 #
 # This file drives all subscripts and should ideally make the whole code available
 
+#################################################################################
+#
+# Config the project
 
 # Check directory
 directory <- getwd()
+
+# set paths
+path.plots <- "plots"
+path.data <- "data"
+path.code <- "code"
 
 # Load subscripts
 source("code/load.libraries.R")

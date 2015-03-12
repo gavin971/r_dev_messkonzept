@@ -19,3 +19,4 @@ axis(at=1:6,side=1,c("20 T","20 B","40 T","40 B","50 T","50 B"))
 
 # Titel
 title(main = "Boxplot der Temperaturen")
+dev.copy2pdf(file = "plots/temp.boxplot.pdf")

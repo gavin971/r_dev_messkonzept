@@ -33,5 +33,7 @@ legend("bottomright",legend=c("20","40","50"), col=c("black","gray","blue"),lty=
 # Titel
 title(main = "Lufttemperaturen am 12.11.2014")
 
+# Save to plots
+dev.copy2pdf(file = "plots/temp.lineplot.pdf")
 
 
