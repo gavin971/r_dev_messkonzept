@@ -24,4 +24,3 @@ source("code/temp.lineplot.R")
 # Boxplot: Top und Bottom gemittelt je Station + Station Seehausen
 source("code/temp.boxplot.dwd.R")
 
-# Linienplot: Temperaturverlauf der Stationen (T und B wieder gemittelt) über 24h ev. ganz hilfreich zur Verdeutlichung

@@ -1,5 +1,5 @@
 #################################################################################
-
+#
 # Script: Line Plot der Temperatur am 12.11.2014
 
 # Diagramm vorbereiten
@@ -7,7 +7,6 @@ xrange <- c(as.POSIXlt("2014-11-12 00:00:00"), as.POSIXlt("2014-11-13 00:00:00")
 yrange <- c(min( c( min(meteo20$ Temp_t), min(meteo40$ Temp_t), min(meteo50$ Temp_t) ) ), max( c( max(meteo20$ Temp_t), max(meteo40$ Temp_t), max(meteo50$ Temp_t) ) ))
 
 plot(xrange, yrange, type="n", panel.first = grid(10,10), xaxt="n", yaxt="n", xlab=NA, ylab=NA)
-
 
 # Achseneinteilung, automatische Beschriftungen
 xticks <- seq(round(min_time, units = "hours"), round(max_time, units = "hours"), by=6*60*60)+3600
@@ -18,20 +17,28 @@ axis(side = 2, tck = -.015, las = 1)
 # AchsenBeschriftungen
 mtext(side = 2, "Temperatur in °C", line = 2)
 # Abbildungsbeschriftung
-mtext(side = 1, "Abb. 2: Top-Temperaturfühler", line = 4)
+mtext(side = 1, "Abb. 2: Lufttemperatur, gemittelt", line = 4)
 
 # Plot 
-lines(Temp_all$TIMESTAMP, Temp_all[,2], col="black")
+lines(Temp_all$TIMESTAMP, Temp_all[,8], col="black")
 
-lines(Temp_all$TIMESTAMP, Temp_all[,4], col="gray")
+lines(Temp_all$TIMESTAMP, Temp_all[,9], col="gray")
 
-lines(Temp_all$TIMESTAMP, Temp_all[,6], col="blue")
+lines(Temp_all$TIMESTAMP, Temp_all[,10], col="blue")
 
 # Legende
 legend("bottomright",legend=c("20","40","50"), col=c("black","gray","blue"),lty=1 )
 
 # Titel
-title(main = "Lufttemperaturen am 12.11.2014")
+title(main = "Lufttemperaturen im Zeitverlauf am 12.11.2014")
+
+
+#################################################################################
+#
+# Ergebnisse DWD dazu plotten
+
+lines(dwd4642$TIMESTAMP, dwd4642[,2], col="red")
+
 
 # Save to plots
 dev.copy2pdf(file = "plots/temp.lineplot.pdf")
