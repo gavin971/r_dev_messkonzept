@@ -19,6 +19,18 @@ Temp_all$T20 <- ( Temp_all$T20_t + Temp_all$T20_b ) / 2
 Temp_all$T40 <- ( Temp_all$T40_t + Temp_all$T40_b ) / 2
 Temp_all$T50 <- ( Temp_all$T50_t + Temp_all$T50_b ) / 2
 
+#################################################################################
+# DWD Daten hinzufügen
+
+# Mess_Datum umbenennen in TIMESTAMP
+names(dwd4642)[1]<-"TIMESTAMP"
+
+# Daten auf Tag 2 begrenzen
+dwd_time <- dwd4642$ TIMESTAMP >= min_time  &  dwd4642$ TIMESTAMP <= max_time
+dwd4642 <- dwd4642[dwd_time, 2]
+
+Temp_all <- cbind(Temp_all, dwd4642[dwd_time, 2])
+View(dwd4642)
 
 
 
