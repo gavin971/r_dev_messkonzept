@@ -1,0 +1,16 @@
+{
+    "contents" : "#################################################################################\n#\n# Script: Boxplot der Temperaturen am 12.11.2014, gemittelt, Vergleich mit DWD\n# Data transform: gemittelte Temperatur Spalten\n\n# Temp_all beinhaltet TIMESTAMP und alle Temperaturfühler\nTemp_all <- cbind(meteo20[meteo20_time, c(1,3,5)], meteo40[meteo40_time, c(3,5)],meteo50[meteo50_time, c(3,5)])\n\n# Rename columns\nnames(Temp_all)[2]<-\"T20_t\"\nnames(Temp_all)[3]<-\"T20_b\"\nnames(Temp_all)[4]<-\"T40_t\"\nnames(Temp_all)[5]<-\"T40_b\"\nnames(Temp_all)[6]<-\"T50_t\"\nnames(Temp_all)[7]<-\"T50_b\"\n\n# Mitteln der Top and Bottom Fühler und in Temp_all schreiben\nTemp_all$T20 <- ( Temp_all$T20_t + Temp_all$T20_b ) / 2\nTemp_all$T40 <- ( Temp_all$T40_t + Temp_all$T40_b ) / 2\nTemp_all$T50 <- ( Temp_all$T50_t + Temp_all$T50_b ) / 2\n\n\n\n\n#################################################################################\n# Plotten\n\n# Filtern nach day2\nday2 <- Temp_all$TIMESTAMP >= as.POSIXlt(\"12.11.2014\",format=\"%d.%m.%Y\") & Temp_all$TIMESTAMP < as.POSIXlt(\"13.11.2014\",format=\"%d.%m.%Y\")\n\n# Temperaturen am 2. Tag\nTemp_day2 <- subset (Temp_all, Temp_all$TIMESTAMP >= as.POSIXlt(\"12.11.2014\",format=\"%d.%m.%Y\") & Temp_all$TIMESTAMP < as.POSIXlt(\"13.11.2014\",format=\"%d.%m.%Y\"))\n\n# Boxplotten, aber erste Spalte auslassen\nboxplot(Temp_day2[,c(8,9,10)], xlab = \"Abb. 1: Temperatur an Stationen, gemittelt\", ylab = \"Temperatur in °C\", xaxt=\"n\")\n\n# Beschriftung\naxis(at=1:4,side=1,c(\"Station 20\",\"Station 40\",\"Station 50\",\"DWD\")) \n\n# Titel\ntitle(main = \"Boxplot der Temperaturen\")\n",
+    "created" : 1426150494022.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1349895640",
+    "id" : "B9F512D4",
+    "lastKnownWriteTime" : 1426152841,
+    "path" : "~/Dropbox/Jobs Active/Studium/WS 14-15/VP Flusslandschaft Elbe/Aufgaben/Aufgabe 3 - Messkonzept/r_dev_messkonzept/code/temp.boxplot.dwd.R",
+    "project_path" : "code/temp.boxplot.dwd.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

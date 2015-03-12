@@ -1,0 +1,16 @@
+{
+    "contents" : "#################################################################################\n#\n# Daten Mörickeluch\n\nmeteo20 <- read.logger(\"data/Messung_Moerickeluch_Nov2014/CR800_20_Meteo.dat\")\nmeteo40 <- read.logger(\"data/Messung_Moerickeluch_Nov2014/CR800_40_Meteo.dat\")\nmeteo50 <- read.logger(\"data/Messung_Moerickeluch_Nov2014/CR800_50_Meteo.dat\")\n\n# Trotz Vorprozessierung haben die Stationen verschiedene Anfangs- und Endzeiten\nsummary(meteo20)\nsummary(meteo40)\nsummary(meteo50)\n\n# Was ist der spaeteste Startzeitpunkt? Was der frueheste Endzeitpunkt?\n# Vergleich der unterschiedlichen min() miteinander ...\n\nmin_time <- max( c( min(meteo20$ TIMESTAMP), min(meteo40$ TIMESTAMP), min(meteo50$ TIMESTAMP) ) )\nmax_time <- min( c( max(meteo20$ TIMESTAMP), max(meteo40$ TIMESTAMP), max(meteo50$ TIMESTAMP) ) )\n\n# der TIMESTAMP muss groess?er als min_time und kleiner als max_time sein\n# logical-Vektoren!\nmeteo20_time <- meteo20$ TIMESTAMP >= min_time  &  meteo20$ TIMESTAMP <= max_time\nmeteo40_time <- meteo40$ TIMESTAMP >= min_time  &  meteo40$ TIMESTAMP <= max_time\nmeteo50_time <- meteo50$ TIMESTAMP >= min_time  &  meteo50$ TIMESTAMP <= max_time\n\n# Common timestamp\ncommon_timestamp <- seq(min_time, max_time, units=\"minutes\", by=60)\n\n\n#################################################################################\n#\n# Daten DWD\n\n# Daten einlesen\ndwd <- read.table(\"data/DWD/Seehausen/stundenwerte_TU_04642_akt/produkt_temp_Terminwerte_20131114_20141214_04642.txt\", header = TRUE, sep = \";\", dec = \".\", na.strings = \"NA\")\n\n# Daten überprüfen\nstr(dwd)\nmax(dwd$Mess_Datum)\nsummary(dwd$Mess_Datum)\nwhich(is.na(dwd$Mess_Datum))\n\n# Spalten einschränken\ndwd4642 <- dwd[,c(2,5,6)]\ndwd4642$Mess_Datum <- strptime(dwd4642$Mess_Datum, tz=\"UTC\", format=\"%Y%m%d%H\")\n\n",
+    "created" : 1426152149127.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1009579997",
+    "id" : "E48B4535",
+    "lastKnownWriteTime" : 1426152204,
+    "path" : "~/Dropbox/Jobs Active/Studium/WS 14-15/VP Flusslandschaft Elbe/Aufgaben/Aufgabe 3 - Messkonzept/r_dev_messkonzept/code/load.data.R",
+    "project_path" : "code/load.data.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

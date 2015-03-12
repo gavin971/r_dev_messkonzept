@@ -1,0 +1,16 @@
+{
+    "contents" : "#################################################################################\n#\n# This file drives all subscripts and should ideally make the whole code available\n\n\n# Check directory\ndirectory <- getwd()\n\n# Load subscripts\nsource(\"code/load.libraries.R\")\nsource(\"code/load.data.R\")\n\n# Lineplot der Lufttemperatur, Zeitraum 24h \nsource(\"code/temp.lineplot.R\")\n\n# Boxplot: Top und Bottom gemittelt je Station + Station Seehausen\nsource(\"code/temp.boxplot.dwd.R\")\n\n# Linienplot: Temperaturverlauf der Stationen (T und B wieder gemittelt) über 24h ev. ganz hilfreich zur Verdeutlichung\n",
+    "created" : 1426150429913.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2172561532",
+    "id" : "9CCD0336",
+    "lastKnownWriteTime" : 1426150461,
+    "path" : "~/Dropbox/Jobs Active/Studium/WS 14-15/VP Flusslandschaft Elbe/Aufgaben/Aufgabe 3 - Messkonzept/r_dev_messkonzept/driver.script.R",
+    "project_path" : "driver.script.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
