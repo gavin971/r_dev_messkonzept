@@ -27,7 +27,7 @@ lines(Temp_all$TIMESTAMP, Temp_all[,9], col="gray")
 lines(Temp_all$TIMESTAMP, Temp_all[,10], col="blue")
 
 # Legende
-legend("bottomright",legend=c("20","40","50"), col=c("black","gray","blue"),lty=1 )
+legend("bottomright",legend=c("20", "40", "50", "DWD"), col=c("black","gray","blue", "red"),lty=1 )
 
 # Titel
 title(main = "Lufttemperaturen im Zeitverlauf am 12.11.2014")

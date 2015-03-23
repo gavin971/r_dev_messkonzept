@@ -26,3 +26,4 @@ source("code/temp.boxplot.dwd.R")
 
 # Tabelle: Durchschnittstemp
 source("code/temp.mean.R")
+
