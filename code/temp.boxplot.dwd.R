@@ -53,4 +53,5 @@ points(4,mean(dwd_day2$LUFTTEMPERATUR), col="red")
 
 # Ausgabe im Ordner plots
 dev.copy2pdf(file = "plots/temp.boxplot.dwd.pdf" )
+jpeg(file = "plots/temp.boxplot.dwd.jpg" )
 

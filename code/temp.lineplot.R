@@ -6,6 +6,7 @@
 xrange <- c(as.POSIXlt("2014-11-12 00:00:00"), as.POSIXlt("2014-11-13 00:00:00") )
 yrange <- c(min( c( min(meteo20$ Temp_t), min(meteo40$ Temp_t), min(meteo50$ Temp_t) ) ), max( c( max(meteo20$ Temp_t), max(meteo40$ Temp_t), max(meteo50$ Temp_t) ) ))
 
+# Plotten
 plot(xrange, yrange, type="n", panel.first = grid(10,10), xaxt="n", yaxt="n", xlab=NA, ylab=NA)
 
 # Achseneinteilung, automatische Beschriftungen
@@ -42,5 +43,6 @@ lines(dwd4642$Mess_Datum, dwd4642[,2], col="red")
 
 # Save to plots
 dev.copy2pdf(file = "plots/temp.lineplot.pdf")
+jpeg(file = "plots/temp.lineplot.jpg")
 
 
