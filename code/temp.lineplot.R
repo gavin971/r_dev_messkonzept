@@ -37,7 +37,7 @@ title(main = "Lufttemperaturen im Zeitverlauf am 12.11.2014")
 #
 # Ergebnisse DWD dazu plotten
 
-lines(dwd4642$TIMESTAMP, dwd4642[,2], col="red")
+lines(dwd4642$Mess_Datum, dwd4642[,2], col="red")
 
 
 # Save to plots

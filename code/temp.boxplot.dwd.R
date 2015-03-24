@@ -48,7 +48,7 @@ dwd_day2 <- subset (dwd4642, dwd4642$TIMESTAMP >= as.POSIXlt("12.11.2014",format
 
 # Boxplot hinzufügen
 boxplot(dwd_day2[, 2], add=TRUE, at=4, border="gray", width=2 )
-points(4,mean(Temp_day2$T50), col="red")
+points(4,mean(dwd_day2$LUFTTEMPERATUR), col="red")
 
 
 # Ausgabe im Ordner plots
