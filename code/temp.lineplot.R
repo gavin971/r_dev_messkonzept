@@ -18,7 +18,7 @@ axis(side = 2, tck = -.015, las = 1)
 # AchsenBeschriftungen
 mtext(side = 2, "Temperatur in °C", line = 2)
 # Abbildungsbeschriftung
-mtext(side = 1, "Abb. 2: Lufttemperatur, gemittelt", line = 4)
+# mtext(side = 1, "Abb. 2: Lufttemperatur, gemittelt", line = 4)
 
 # Plot 
 lines(Temp_all$TIMESTAMP, Temp_all[,8], col="black")

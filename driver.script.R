@@ -24,6 +24,10 @@ source("code/temp.lineplot.R")
 # Boxplot: Top und Bottom gemittelt je Station + Station Seehausen
 source("code/temp.boxplot.dwd.R")
 
+# Boxplot: Windrichtung
+source("code/wind.windroses.R")
+
+
 # Tabelle: Durchschnittstemp
-source("code/temp.mean.R")
+# TODO: source("code/temp.calculations.R")
 

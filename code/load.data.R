@@ -68,3 +68,45 @@ Temp_all$T20 <- ( Temp_all$T20_t + Temp_all$T20_b ) / 2
 Temp_all$T40 <- ( Temp_all$T40_t + Temp_all$T40_b ) / 2
 Temp_all$T50 <- ( Temp_all$T50_t + Temp_all$T50_b ) / 2
 
+
+#################################################################################
+#
+# Daten Wind
+
+# Einlesen der Stationen im Mörickeluch 
+wind20 <- read.logger("data/Messung_Moerickeluch_Nov2014/CR800_20_Wind.dat")
+wind40 <- read.logger("data/Messung_Moerickeluch_Nov2014/CR800_40_Wind.dat")
+wind50 <- read.logger("data/Messung_Moerickeluch_Nov2014/CR800_50_Wind.dat")
+
+# Vorprozessierung - falsches Datum
+wind20 <- wind20[-(1:6),]
+wind40 <- wind40[-(1:38),]
+wind50 <- wind50[-c(1,2675:2678),]
+
+# Wind: gemeinsame startzeitpunkte/endzeitpunkte herausfinden
+wind_min_time <- max( c( min(wind20$ TIMESTAMP), min(wind40$ TIMESTAMP), min(wind50$ TIMESTAMP) ) )
+wind_max_time <- min( c( max(wind20$ TIMESTAMP), max(wind40$ TIMESTAMP), max(wind50$ TIMESTAMP) ) )
+# der common_timestamp hilft als gemeinsamer timestamp aller Daten
+wind_common_timestamp <- as.POSIXlt(seq(wind_min_time,wind_max_time, units="minutes", by=60))
+
+
+# 1. Einlesen/Vorprozessierung der DWD-Daten Wind
+#################################################################################
+
+dwd_wind <- read.table("data/DWD/Seehausen/stundenwerte_FF_04642_akt/produkt_wind_Terminwerte_20131206_20150105_04642.txt", header = TRUE, sep = ";", dec = ".", na.strings = "NA")
+
+# Vorprozessierung: unnötige Spalten
+dwd_wind4642 <- dwd_wind[,c(2,5,6)]
+
+# Vorprozessierung: Umwandlung in Date-Time-Format
+dwd_wind4642$ Mess_Datum <- strptime(dwd_wind4642$Mess_Datum, tz = "UTC", format="%Y%m%d%H")
+
+# Vorprozessierung: Beschränkung auf Messzeitraum
+dwd_wind4642_cut <- dwd_wind4642[dwd_wind4642$ Mess_Datum >= wind_min_time & dwd_wind4642$Mess_Datum <= wind_max_time,]
+
+
+
+#################################################################################
+#
+# Daten Globalstrahlung
+
