@@ -5,6 +5,7 @@
 # Environment leeren
 rm(list = ls())
 
+# Daten einlesen
 meteo20 <- read.logger("data/Messung_Moerickeluch_Nov2014/CR800_20_Meteo.dat")
 meteo40 <- read.logger("data/Messung_Moerickeluch_Nov2014/CR800_40_Meteo.dat")
 meteo50 <- read.logger("data/Messung_Moerickeluch_Nov2014/CR800_50_Meteo.dat")
@@ -47,6 +48,12 @@ which(is.na(dwd$Mess_Datum))
 dwd4642 <- dwd[,c(2,5,6)]
 dwd4642$Mess_Datum <- strptime(dwd4642$Mess_Datum, tz="UTC", format="%Y%m%d%H")
 
+# Vorprozessierung: Beschränkung auf Messzeitraum
+dwd4642 <- dwd4642[dwd4642$ Mess_Datum >= min_time & dwd4642$Mess_Datum <= max_time,]
+
+# Temperaturen DWD am 2. Tag
+dwd_day2 <- subset (dwd4642, dwd4642$Mess_Datum >= as.POSIXlt("11.11.2014",format="%d.%m.%Y") & dwd4642$Mess_Datum < as.POSIXlt("13.11.2014",format="%d.%m.%Y"))
+
 
 #################################################################################
 #
@@ -67,6 +74,9 @@ names(Temp_all)[7]<-"T50_b"
 Temp_all$T20 <- ( Temp_all$T20_t + Temp_all$T20_b ) / 2
 Temp_all$T40 <- ( Temp_all$T40_t + Temp_all$T40_b ) / 2
 Temp_all$T50 <- ( Temp_all$T50_t + Temp_all$T50_b ) / 2
+
+# Temperaturen am 2. Tag
+Temp_day2 <- subset (Temp_all, Temp_all$TIMESTAMP >= as.POSIXlt("12.11.2014",format="%d.%m.%Y") & Temp_all$TIMESTAMP < as.POSIXlt("13.11.2014",format="%d.%m.%Y"))
 
 
 #################################################################################
@@ -109,4 +119,39 @@ dwd_wind4642_cut <- dwd_wind4642[dwd_wind4642$ Mess_Datum >= wind_min_time & dwd
 #################################################################################
 #
 # Daten Globalstrahlung
+
+# Sonnenscheindauer (Strahlung > 0)
+global20 <-meteo20$ShortIn > "0"
+global40 <-meteo40$ShortIn > "0"
+global50 <-meteo50$ShortIn > "0"
+
+# Global_all beinhaltet TIMESTAMP und alle ShortIn
+Global_all <- cbind(meteo20[meteo20_time, c(1,8)], meteo40[meteo40_time, c(8)],meteo50[meteo50_time, c(8)])
+
+# Rename columns
+names(Global_all)[2]<-"ShortIn20"
+names(Global_all)[3]<-"ShortIn40"
+names(Global_all)[4]<-"ShortIn50"
+
+
+#----------------------------------------------------------------------------------------------
+# DWD Globalstrahlung 
+#----------------------------------------------------------------------------------------------
+
+dwd_global4642 <- read.table("data/DWD/Seehausen/stundenwerte_ST_04642/produkt_strahlung_Stundenwerte_19910101_20150331_04642.txt", header = TRUE, sep = ";", dec = ".", na.strings = "NA")
+
+summary(dwd_global4642)
+
+# Vorprozessierung: unnötige Spalten
+dwd_global4642 <- dwd_global[,c(1,2,6)]
+
+# Vorprozessierung: Umwandlung in Date-Time-Format
+dwd_global4642$ MESS_DATUM <- strptime(dwd_global4642$MESS_DATUM, tz = "UTC", format="%Y%m%d%H")
+
+# Vorprozessierung: Beschränkung auf Messzeitraum
+dwd_global4642 <- dwd_global4642[dwd_global4642$ MESS_DATUM >= min_time & dwd_global4642$MESS_DATUM <= max_time,]
+
+# Vorprozessieren: Umrechen von Joule/cm2 in W/m2
+
+dwd_global4642$GLOBAL_W_M2 <- dwd_global4642$GLOBAL_KW_J 
 

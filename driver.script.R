@@ -21,12 +21,14 @@ source("code/load.data.R")
 # Lineplot der Lufttemperatur, Zeitraum 24h 
 source("code/temp.lineplot.R")
 
+# Lineplot der Globalstrahlung, Zeitraum 24h 
+source("code/radiation.lineplot.R")
+
 # Boxplot: Top und Bottom gemittelt je Station + Station Seehausen
 source("code/temp.boxplot.dwd.R")
 
 # Boxplot: Windrichtung
 source("code/wind.windroses.R")
-
 
 # Tabelle: Durchschnittstemp
 # TODO: source("code/temp.calculations.R")

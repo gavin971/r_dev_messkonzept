@@ -20,6 +20,7 @@ min_50_row <- which.min(Temp_day2[,10])
 min_50 <- Temp_day2[min_50_row,]
 min_50_temp <- min(Temp_day2[,10])
 
+
 min_dwd_row <- which.min(dwd_day2[,2])
 min_dwd <- dwd_day2[min_dwd_row,]
 min_dwd_temp <- min(dwd_day2[,2])

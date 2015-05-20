@@ -40,9 +40,18 @@ title(main = "Lufttemperaturen im Zeitverlauf am 12.11.2014")
 
 lines(dwd4642$Mess_Datum, dwd4642[,2], col="red")
 
+#----------------------------------------------------------------------------------------------
+# Sonnenaufgang und Untergang berechnen 
+# http://jekophoto.de/tools/daemmerungsrechner-blaue-stunde-goldene-stunde/index.php
+# TODO: fertigstellen
+#----------------------------------------------------------------------------------------------
+
+sun_up <- as.POSIXlt("2014-11-11 07:30:00")
+sun_down <- as.POSIXlt("2014-11-11 16:24:00")
 
 # Save to plots
 dev.copy2pdf(file = "plots/temp.lineplot.pdf")
 jpeg(file = "plots/temp.lineplot.jpg")
+
 
 
