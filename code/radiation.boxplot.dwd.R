@@ -1,8 +1,17 @@
-#################################################################################
-#
+#----------------------------------------------------------------------------------------------
 # Script: Boxplot der Temperaturen am 12.11.2014, gemittelt, Vergleich mit DWD
-# Data transform: gemittelte Temperatur Spalten
 # TODO: DWD Station in eigener Spalte sauber platzieren
+# 
+# Script to paper by Langanki, Schulz 2015 
+# R version 3.1.2 (2014-10-31), RStudio 0.98.1103 
+# 
+# Last modified: 22.05.2015
+# Package dependencies:
+# FGClimatology
+#
+# Contact: schulz.1@campus.tu-berlin.de
+#----------------------------------------------------------------------------------------------
+
 
 
 #################################################################################

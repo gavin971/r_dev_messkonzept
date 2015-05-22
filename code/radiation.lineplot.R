@@ -1,6 +1,15 @@
-#################################################################################
-#
+#----------------------------------------------------------------------------------------------
 # Script: Line Plot der Globalstrahlung am 12.11.2014
+#
+# Script to paper by Langanki, Schulz 2015 
+# R version 3.1.2 (2014-10-31), RStudio 0.98.1103 
+# 
+# Last modified: 22.05.2015
+# Package dependencies:
+# FGClimatology
+#
+# Contact: schulz.1@campus.tu-berlin.de
+#----------------------------------------------------------------------------------------------
 
 # Diagramm vorbereiten
 xrange <- c(as.POSIXlt("2014-11-12 00:00:00"), as.POSIXlt("2014-11-13 00:00:00") )

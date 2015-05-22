@@ -61,6 +61,7 @@ dwd_day2 <- subset (dwd4642, dwd4642$Mess_Datum >= as.POSIXlt("11.11.2014",forma
 
 # Temp_all beinhaltet TIMESTAMP und alle Temperaturfühler
 Temp_all <- cbind(meteo20[meteo20_time, c(1,3,5)], meteo40[meteo40_time, c(3,5)],meteo50[meteo50_time, c(3,5)])
+Temp_all <- cbind(Temp_all, meteo20[meteo20_time, c(8)],meteo40[meteo40_time, c(8)],meteo50[meteo50_time, c(8)])
 
 # Rename columns
 names(Temp_all)[2]<-"T20_t"
@@ -69,6 +70,10 @@ names(Temp_all)[4]<-"T40_t"
 names(Temp_all)[5]<-"T40_b"
 names(Temp_all)[6]<-"T50_t"
 names(Temp_all)[7]<-"T50_b"
+names(Temp_all)[8]<-"ShortIn_20"
+names(Temp_all)[9]<-"ShortIn_40"
+names(Temp_all)[10]<-"ShortIn_50"
+
 
 # Mitteln der Top and Bottom Fühler und in Temp_all schreiben
 Temp_all$T20 <- ( Temp_all$T20_t + Temp_all$T20_b ) / 2

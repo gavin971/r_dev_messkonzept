@@ -1,6 +1,15 @@
-#################################################################################
+#----------------------------------------------------------------------------------------------
+# Script: Calculations am 12.11.2014
 #
-# Script: Durchschnittstemperaturen am 12.11.2014
+# Script to paper by Langanki, Schulz 2015 
+# R version 3.1.2 (2014-10-31), RStudio 0.98.1103 
+# 
+# Last modified: 22.05.2015
+# Package dependencies:
+# FGClimatology
+#
+# Contact: schulz.1@campus.tu-berlin.de
+#----------------------------------------------------------------------------------------------
 
 summary(Temp_day2)
 
@@ -49,15 +58,6 @@ max_dwd_temp <- max(dwd_day2[,2])
 
 max_values <- c (max(Temp_day2[,8]),max(Temp_day2[,9]),max(Temp_day2[,10]),max(dwd_day2[,2]))
 
-# define row and column titles
-mrownames = spl('min temp,max temp,row 3')
-mcolnames = spl('col 1,col 2,col 3,col 4')
 
-# create temp matrix with data you want to plot
-temp = matrix(NA, len(mrownames), len(mcolnames))
-rownames(temp) = mrownames
-colnames(temp) = mcolnames
-temp[,] = matrix(1:12,3,4)
-
-# plot temp, display current date in (top, left) cell
-plot.table(temp, format(as.Date(Sys.time()), '%d %b %Y'))
+str(Temp_all)
+summary(Temp_day2)

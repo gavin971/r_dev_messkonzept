@@ -30,6 +30,9 @@ source("code/temp.boxplot.dwd.R")
 # Boxplot: Windrichtung
 source("code/wind.windroses.R")
 
+# Correlations: Temperatur Globalstrahlung
+source("code/temp_radiation.regression.R")
+
 # Tabelle: Durchschnittstemp
 # TODO: source("code/temp.calculations.R")
 
